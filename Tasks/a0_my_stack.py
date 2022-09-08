@@ -6,7 +6,7 @@ from typing import Any
 
 class Stack:
     def __init__(self):
-        self.stack = []  # todo для стека можно использовать python list
+        self.stack = []  # для стека можно использовать python list
         self.reversed_index = None
 
     def push(self, elem: Any) -> None:
@@ -38,12 +38,15 @@ class Stack:
         :param ind: index of element (count from the top, 0 - top, 1 - first from top, etc.)
         :return: peeked element or None if no element in this place
         """
-        self.reversed_index = -ind - 1
+
         print(ind)
 
-        if not self.stack:
+        try:
+            reversed_index = -ind - 1
+            return self.stack[reversed_index]
+        except IndexError:
             return None
-        return self.stack[self.reversed_index]
+
 
     def clear(self) -> None:
         """
