@@ -8,24 +8,53 @@ def stairway_path(stairway: Sequence[Union[float, int]]) -> Union[float, int]:
     :param stairway: list of ints, where each int is a cost of appropriate step
     :return: minimal cost of getting to the top
     """
+
+    # рекурсия без кэша
+
+    # def lazy_stairway_path(stair_number: int) -> Union[float, int]:
+    #     """
+    #
+    #     :param stair_number: номер ступени
+    #     :return: стоимоть
+    #     """
+    #     if stair_number == 0:
+    #         return stairway[stair_number]
+    #
+    #     if stair_number == 1:
+    #         return stairway[stair_number]
+    #
+    #     current_cost = stairway[stair_number]
+    #     return current_cost + min(lazy_stairway_path(stair_number - 1), lazy_stairway_path(stair_number - 2))
+    #
+    # print(stairway)
+    # return lazy_stairway_path(len(stairway)-1)
+
+    # рекурсия с кэшем
+    total_cost = {}
+
     def lazy_stairway_path(stair_number: int) -> Union[float, int]:
         """
-
         :param stair_number: номер ступени
         :return: стоимоть
         """
+        if stair_number in total_cost:
+            return total_cost[stair_number]
+
         if stair_number == 0:
+            total_cost[stair_number] = stairway[stair_number]
             return stairway[stair_number]
 
         if stair_number == 1:
+            total_cost[stair_number] = stairway[stair_number]
             return stairway[stair_number]
 
         current_cost = stairway[stair_number]
-        return current_cost + min(lazy_stairway_path(stair_number - 1), lazy_stairway_path(stair_number - 2))
+        total_cost[stair_number] = current_cost + min(lazy_stairway_path(stair_number - 1),
+                                                      lazy_stairway_path(stair_number - 2))
+        return total_cost[stair_number]
 
     print(stairway)
-    return lazy_stairway_path(len(stairway)-1)
-
+    return lazy_stairway_path(len(stairway) - 1)
 
 def direct_stairway_path(stairway: Sequence[Union[float, int]]) -> Union[float, int]:
     # stairway - цена ступени
