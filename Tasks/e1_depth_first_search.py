@@ -30,13 +30,15 @@ def dfs(g: nx.Graph, start_node: Hashable) -> List[Hashable]:
     draw_graph(g)
     path_node = []
     visited_nodes = {node: False for node in g.nodes}
-    wait_nodes = deque()
+    wait_nodes = []  # deque()
 
     wait_nodes.append(start_node)
+    visited_nodes[start_node] = True
+
     while wait_nodes:
         current_node = wait_nodes.pop()
         path_node.append(current_node)
-        visited_nodes[current_node] = True  # узел сгорел
+        # visited_nodes[current_node] = True  # узел сгорел
 
         for neighbour in g[current_node]:
             if not visited_nodes[neighbour]:
