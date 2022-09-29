@@ -3,6 +3,9 @@ You can do it either with networkx ('cause tree is a graph)
 or with dicts (smth like {'key': 0, value: 123, 'left': {...}, 'right':{...}})
 """
 
+from typing import Any, Optional, Tuple
+# import networkx as nx
+
 # node = {
 #     "key": "",
 #     "value": "",
@@ -19,9 +22,6 @@ or with dicts (smth like {'key': 0, value: 123, 'left': {...}, 'right':{...}})
 #         },
 #     "right": "",
 #     }
-
-from typing import Any, Optional, Tuple
-# import networkx as nx
 
 
 class BinarySearchTree:
